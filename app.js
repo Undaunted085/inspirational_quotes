@@ -402,9 +402,18 @@ const quotes = [
 ];
 
 function generateQuote(array) {
-    let randomNumber = Math.floor(Math.random(0, 1)*100);
-    return (array.find(quote => quote.id==randomNumber)).text
-
+    let randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex].text;
 }
 
-console.log(generateQuote(quotes));
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.getElementById("new-quote-btn");
+  const display = document.getElementById("quote-display");
+
+  function showQuote() {
+    display.textContent = generateQuote(quotes);
+  }
+
+  button.addEventListener("click", showQuote);
+  showQuote();
+});
